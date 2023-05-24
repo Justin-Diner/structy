@@ -154,3 +154,46 @@
 	// Using a hashmap gives you a better time complexity. But a larger Space complexity than the brute force nsquared solution. This is normally accepted. 
 	// Checking for existence is constant. 
 
+	// Paid Product
+	const pairProduct = (numbers, targetProduct) => {
+		// Create a 'searched' hashmap. 
+		
+		// loop through numbers, keeping track of element and index within searched. 
+		// declare a complement variable of the current element. 
+		// If searched contains the complement, return an array of i and the complement index. 
+		const searched = {};
+		
+		for (let i = 0; i < numbers.length; i++) {
+			const current = numbers[i]
+			const complement = targetProduct / current; 
+			if (complement in searched) return [searched[complement], i]
+			searched[current] = i;
+		}
+	};
+	
+	// Complexity is O(n) run time. All other operations are constant time. Inserting into a hashmap is constant. And the lookup into the hashmap is constant. 
+	// Space Complexity - linear because we have to store that hashmap. 
+
+		// fiveSort
+
+	const fiveSort = (nums) => {
+		let i = 0; 
+		let j = nums.length - 1;
+		
+		while (i < j) {
+			if (nums[j] === 5) {
+				j-= 1;
+			} else if (nums[i] != 5) {
+				i += 1;
+			} else {
+				[nums[i], nums[j]] = [nums[j], nums[i]]
+				i += 1;
+			}
+		}
+		
+		return nums; 
+	};
+		
+		// swapping elements in an array is constant O(1);
+		// Time complexity is O(n);
+		// Space complexity is O(1)
