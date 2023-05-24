@@ -27,6 +27,130 @@
 	// Worst case is n * m. When you do a string concatenation that is O(n) runtime. Strings are immutable. You are actually creating a new string and so you run in a linear run time based on size of string. So instead you need to use an array. Pushing an element to the end of an array runs in constant time. 
 	// The above answer has n * m run time. 
 
-// Hash Map
+	// Compress
+	const compress = (s) => {
+		let i = 0;
+		let j = 0; 
+		let compressed = [];
+		
+		while (j <= s.length) {
+			if (s[j] === s[i]) {
+				j += 1;
+			} else {
+				const num = j - i; 
+				if (num === 1) {
+					compressed.push(s[i])
+				} else {
+				compressed.push(num);
+				compressed.push(s[i]);
+				}
+				i = j; 
+			}
+		}
+		return compressed.join("");
+	};
 
-// Hash Set
+// concatonation is linear. 
+// This is a linear O(n) time complexity solution. 
+// Hash Map
+	// Anagrams
+
+	const anagrams = (s1, s2) => {
+		let count = {};
+		
+		for (let letter of s1) {
+			if (!count[letter]) {
+				count[letter] = 0
+			}
+			count[letter] += 1;
+		}
+		
+		// O(n)
+		
+		for (let letter of s2) {
+			if (!(letter in count)) {
+				return false; 
+			} else {
+				count[letter] -= 1; 
+			}
+		}
+		
+		// O(m)
+		
+		for (let letter in count) {
+			if (count[letter] != 0) {
+				return false; 
+			} 
+		}
+		  // O(n)
+			return true; 
+};
+
+// Linear or Multilinear. O(n+m). Create HashMaps of each;
+// Cannot use equality because you are checking if they are the same reference in memory. Not whether they contain the same values. 
+// O (n + m + n) / O(n + m) - multilinear. 
+// Space: O(n) - we are only creating a single object. 
+
+	// Most Frequent Char
+
+	const mostFrequentChar = (s) => {
+		let count = {};
+		let largest = 0;
+		let leader;
+		
+		for (let letter of s) {
+			if (!(count[letter])) {
+				count[letter] = 0
+			}
+			count[letter] += 1;
+		}
+		
+		// O(n);
+		
+		for (let letter in count) {
+			if (count[letter] > largest ) {
+				largest = count[letter];
+				leader = letter; 
+			}
+		}
+		return leader; 
+	};
+
+	// Strucy Solution
+	const mostFrequentChar = (s) => {
+		const count = {};
+		
+		for (let char of s) {
+			if (!(char in count)) {
+				count[char] = 0;
+			}
+			count[char] += 1
+		}
+		
+		let best = null;
+		for (let char of s) {
+			if (best === null || count[char] > count[best]) {
+				best = char;
+			}
+		}
+		return best;
+	};
+
+	// Pair Sum
+
+	const pairSum = (numbers, targetSum) => {
+		const previousNums = {};
+		for (let i = 0; i < numbers.length; i++) {
+			const num = numbers[i];
+			const complement = targetSum - num; 
+			if (complement in previousNums) return [i, previousNums[complement]];
+			previousNums[num] = i; 
+		}
+	 
+	};
+	
+	// Hashmaps give O(1) lookup. 
+	// When you are searching for a pair, look for a complement. 
+	// Using a hashmap gives you a better time complexity. But a larger Space complexity than the brute force nsquared solution. This is normally accepted. 
+	// Checking for existence is constant. 
+
