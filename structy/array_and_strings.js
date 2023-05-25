@@ -93,28 +93,28 @@
 
 	// Most Frequent Char
 
-	const mostFrequentChar = (s) => {
-		let count = {};
-		let largest = 0;
-		let leader;
+	//const mostFrequentChar = (s) => {
+	//	let count = {};
+	//	let largest = 0;
+	//	let leader;
 		
-		for (let letter of s) {
-			if (!(count[letter])) {
-				count[letter] = 0
-			}
-			count[letter] += 1;
-		}
+	//	for (let letter of s) {
+	//		if (!(count[letter])) {
+	//			count[letter] = 0
+	//		}
+	//		count[letter] += 1;
+	//	}
 		
-		// O(n);
+	//	// O(n);
 		
-		for (let letter in count) {
-			if (count[letter] > largest ) {
-				largest = count[letter];
-				leader = letter; 
-			}
-		}
-		return leader; 
-	};
+	//	for (let letter in count) {
+	//		if (count[letter] > largest ) {
+	//			largest = count[letter];
+	//			leader = letter; 
+	//		}
+	//	}
+	//	return leader; 
+	//};
 
 	// Strucy Solution
 	const mostFrequentChar = (s) => {
