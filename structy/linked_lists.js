@@ -68,16 +68,42 @@ printLInkedListRec(a);
 //};
 
 const linkedListValues = (head) => {
-  const listValues = [];
-  fillValues(head, listValues);
-  return listValues; 
-};
+	const values = [];
+	fillValues(head, values);
+	return values;
+}
 
-const fillValues = (head, listValues) => {
-  if (head === null) return; 
-  listValues.push(head.val)
-  fillValues(head.next, listValues);
+const fillValues = (head, values) => {
+	if (head === null) return;
+	values.push(head.val);
+	fillValues(head.next, values);
 }
   
 // Time complexity is O(n) iterating through each value ones. 
 // Space complexity is O(n), because the output array is the number of nodes. 
+// Arrays are passed by reference in JavaScript, this means that within the fillValues recursive function,
+// when you use values.push, you are actually pushing into the values array. It is not just for local scope. 
+// Strings are immutable in JavaScript, so it would be a copy if you made any adjustments to the string recursively. 
+
+// Sum List
+
+const sumList = (head) => {
+	let current = head;
+	let sum = 0;
+
+	while (current != null) {
+		sum += current.val;
+		current = current.next;
+	}
+	return sum;
+};
+
+// const sumList = (head) => {
+// 	if (head === null) return 0;
+// 	return head.val + sumList(head.next);
+// };
+
+// When we analyze recursive functions, we have to include the call stack so this would be O(n)
+// Both have the same O(n) runtime. In recursion you have O(n) calls. In recusion you have O(n) in the loop. But you have O(n) space. 
+// Because you have n calls in the call stack. 
+
