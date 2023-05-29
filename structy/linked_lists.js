@@ -107,3 +107,23 @@ const sumList = (head) => {
 // Both have the same O(n) runtime. In recursion you have O(n) calls. In recusion you have O(n) in the loop. But you have O(n) space. 
 // Because you have n calls in the call stack. 
 
+// const linkedListFind = (head, target) => {
+// 	let current = head;
+
+// 	while (current != null) {
+// 		if (current.val === target) return true;
+// 		current = current.next;
+// 	}
+// 	return false;
+// };
+
+// O(n) time complexity. Due to traversing all of the nodes in the linked list. 
+// O(1) space complexity because you are deadling witha  constant number of variables. 
+
+const linkedListFind = (head, target) => {
+	if (head === null) return false;
+	if (head.val === target) return true;
+	return linkedListFind(head.next, target)
+};
+
+// O(n) time complexity. O(n) space complexity because you need to store each call on the call stack. 
