@@ -117,13 +117,70 @@ const sumList = (head) => {
 // 	return false;
 // };
 
+// n = number of nodes. 
 // O(n) time complexity. Due to traversing all of the nodes in the linked list. 
 // O(1) space complexity because you are deadling witha  constant number of variables. 
 
 const linkedListFind = (head, target) => {
-	if (head === null) return false;
-	if (head.val === target) return true;
-	return linkedListFind(head.next, target)
+	if (head === null) return false; 
+	if (head.val === target) return true; 
+	return linkedListFind(head.next, target);
 };
 
 // O(n) time complexity. O(n) space complexity because you need to store each call on the call stack. 
+
+const getNodeValue = (head, index) => {
+  let current = head; 
+  let indexTrack = 0; 
+  
+  while (current != null) {
+    if (indexTrack === index) return current.val; 
+    current = current.next;
+    indexTrack += 1;
+  }
+  return null; 
+};
+
+// n = number of nodes. 
+// Time complexit is O(n) because you must go through the linked list. 
+// Space complexity is O(1) because your amount of variables is constant. 
+
+//const getNodeValue = (head, index) => {
+//  if (head === null) return null; 
+//  if (index === 0) return head.val;
+//  return getNodeValue(head.next, index -=1)
+//};
+
+// For recursive 
+// n = number of nodes. 
+// Time complexity is O(n) because you must go through the linkedlist. 
+// Space complexity is also O(n) because you must make n recursive calls on the call stack. 
+
+const reverseList = (head) => {
+  let current = head; 
+  let prev = null; 
+  
+  while (current != null) {
+    const next = current.next; 
+    current.next = prev; 
+    prev = current; 
+    current = next; 
+  }
+  return prev; 
+};
+
+// n = number of nodes in linked list 
+// Time Complexity is O(n) because you must traverse the linkedlist. 
+// Space complexity is O(1) because you have a constant number of variables that doesn't scale with n. 
+
+const reverseListRec = (head, prev = null) => {
+  if (head === null) return prev; 
+  const next = head.next; 
+  head.next = prev; 
+  return reverseList(next, head)
+};
+
+// Recursive 
+// n = number of nodes in linked list n
+// Time Complexity is O(n) because you must traverse the linkedlist. 
+// Space complexity is O(n) because you have to count the amount of calls on the call stack. 
