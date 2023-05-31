@@ -184,3 +184,69 @@ const reverseListRec = (head, prev = null) => {
 // n = number of nodes in linked list n
 // Time Complexity is O(n) because you must traverse the linkedlist. 
 // Space complexity is O(n) because you have to count the amount of calls on the call stack. 
+
+const zipperLists = (head1, head2) => {
+  const head = head1; 
+  let tail = head; 
+  let current1 = head1.next; 
+  let current2 = head2; 
+  let count = 0; 
+  
+  while (current1 != null && current2 != null) {
+    if (count % 2 === 0) {
+      tail.next = current2; 
+      current2 = current2.next; 
+    } else {
+      tail.next = current1; 
+      current1 = current1.next; 
+    }
+    tail = tail.next; 
+    count +=1 ;
+  }
+  if (current1 != null) tail.next = current1; 
+  if (current2 != null) tail.next = current2; 
+  
+  return head; 
+};
+
+// O(min(n, m)) time complexity because once you traverse n or m you just append the the other to end. 
+// O(1) space complexity. Constant amount of variables that do not scale with the size of n or m. 
+
+const zipperListss = (head1, head2) => {
+  if (head1 === null && head2 === null) return null; 
+  if (head1 === null) return head2; 
+  if (head2 === null) return head1; 
+  
+  const next1 = head1.next; 
+  const next2 = head2.next; 
+  head1.next = head2; 
+  head2.next = zipperLists(next1, next2)
+  
+  return head1; 
+};
+
+// O(min(n, m)) time complexity because once you traverse n or m you just append the the other to end. 
+// O(min(n, m)) space complexity. Due to amount of calls on the callstack. 
+
+const mergeLists = (head1, head2) => {
+  let dummyHead = new Node(null); 
+  let tail = dummyHead; 
+  let current1 = head1; 
+  let current2 = head2; 
+  
+  while (current1 != null && current2 != null) {
+    if (current1.val < current2.val) {
+      tail.next = current1
+      current1 = current1.next; 
+    } else {
+      tail.next = current2;
+      current2 = current2.next; 
+    }
+    tail = tail.next; 
+  }
+  
+  if (current1 != null) tail.next = current1; 
+  if (current2 != null) tail.next = current2; 
+  
+  return dummyHead.next; 
+};
