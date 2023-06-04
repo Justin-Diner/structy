@@ -52,6 +52,10 @@
 
 // concatonation is linear. 
 // This is a linear O(n) time complexity solution. 
+// Things to remember:
+// 1. If statement needs to be if (s[i] === s[j]) You got this wrong on the second run through. 
+
+
 // Hash Map
 	// Anagrams
 
@@ -90,6 +94,7 @@
 // Cannot use equality because you are checking if they are the same reference in memory. Not whether they contain the same values. 
 // O (n + m + n) / O(n + m) - multilinear. 
 // Space: O(n) - we are only creating a single object. 
+// I got this correct on the second review. However, I did not anticipate the early return in the second loop. Make sure you understand what happens if there is an edge case. In that case, it would be what to do when 
 
 	// Most Frequent Char
 
@@ -136,6 +141,8 @@
 		return best;
 	};
 
+	// 2nd Attempt: Something to remember. In yours you did not set best to anything. Here you set it to null. It did not matter in the end but you may want to intentionally set it to null. 
+
 	// Pair Sum
 
 	const pairSum = (numbers, targetSum) => {
@@ -148,6 +155,8 @@
 		}
 	 
 	};
+
+	// Second attempt: My logic was correct here. I messed up populating the hashmap. Make sure that you key is what it is. In my version, I did not create a variable for num. Instead, I just put in numbers[i]. This was a mistake and resulted in an error. 
 	
 	// Hashmaps give O(1) lookup. 
 	// When you are searching for a pair, look for a complement. 
@@ -197,3 +206,4 @@
 		// swapping elements in an array is constant O(1);
 		// Time complexity is O(n);
 		// Space complexity is O(1)
+// Make sure you are keeping track of nums[i] or just i. You messed that up on the second time around. Take your time and know what element you are evaluating. 
