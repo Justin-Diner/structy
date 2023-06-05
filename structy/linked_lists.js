@@ -328,3 +328,49 @@ const longestStreak = (head) => {
 };
 
 // This algorithm has linear time and constant space. We know this is maximumally efficient because we need to at least look at every node in the list. 
+
+// Remove Node 
+const removeNode = (head, targetVal) => {
+  if (head.val === targetVal) return head.next; 
+
+  let current = head; 
+  let prev = null; 
+  
+  while (current != null) {
+    if (current.val === targetVal) {
+      if (current.next === null) {
+        prev.next = null; 
+        return head; 
+      }
+      prev.next = current.next; 
+      return head; 
+    } 
+    prev = current; 
+    current = current.next; 
+  }
+};
+
+// Time complexity is O(n) - linear. Because I need to go through entire list in worst case. 
+// Space complexity is O(1) constant. No large variables created with increased n. 
+
+// My solution for Recurisve
+//const removeNode = (head, targetVal, prev = null) => {
+//  if (prev === null && head.next === null) return prev; 
+//  if (prev === null && head.next && head.val === targetVal) return head.next; 
+//  if (head.val === targetVal) {
+//    prev.next = head.next; 
+//  } else {
+//    prev = head; 
+//    removeNode(head.next, targetVal, prev)
+//  }
+//  return head; 
+//};
+
+// You actually do not need to track your previous node. 
+// Recursive Solution
+const removeNode = (head, targetVal, prev = null) => {
+  if (head === null) return null; 
+  if (head.val === targetVal) return head.next; 
+  head.next = removeNode(head.next, targetVal);
+  return head; 
+};
