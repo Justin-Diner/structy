@@ -254,33 +254,77 @@ const mergeLists = (head1, head2) => {
 
 // is univalue list
 
-const isUnivalueList = (head) => {
-  if (head.next === null) return true; 
-  let current = head; 
-  let next = head.next; 
+//const isUnivalueList = (head) => {
+//  if (head.next === null) return true; 
+//  let current = head; 
+//  let next = head.next; 
   
-  while (current.next != null) {
-    if (current.val != next.val) {
-      return false; 
-    } else {
-      current = current.next; 
-      next = current.next; 
-    }
-  }
-  return true; 
-  
-};
+//  while (current.next != null) {
+//    if (current.val != next.val) {
+//      return false; 
+//    } else {
+//      current = current.next; 
+//      next = current.next; 
+//    }
+//  }
+//  return true; 
+//};
 
 // This is going to have O(n) time complexity and O(1) space complexity because no new variables are created with the size of the n. 
 
-const isUnivalueList = (head) => {
-  if (head.next === null) return true; 
-  const next = head.next; 
-  if (head.val === next.val) {
-    return isUnivalueList(next);
-  }
-  return false; 
-};
+//const isUnivalueList = (head) => {
+//  if (head.next === null) return true; 
+//  const next = head.next; 
+//  if (head.val === next.val) {
+//    return isUnivalueList(next);
+//  }
+//  return false; 
+//};
 
 // The recursive solution is O(n) - linear time complexity due to the size of the linked list 
 // and O(n) space complexity due to the amount of calls on the callstack. 
+
+// Alvin Solution 
+const isUnivalueList = (head) => {
+	let current = head; 
+	while (current != null) {
+		if (current.val != head.val) return true; 
+		current = current.next; 
+	}
+	return true; 
+}
+
+// There is an implied if else conditional here. The initial if checks if current.val != head.val. The current = current.next is an implied else. You missed this and wrote out extra syntax on first try. Got it right, but added a bit of extra syntax. 
+
+// Alvin Recurisve 
+
+const isUnivalueListRec = (head, prevVal = null) => {
+	if (head === null) return true; 
+  if (prevVal != null && head.val != prevVal) return false; 
+  isUnivalueList(head.next, head.val);
+}
+
+const longestStreak = (head) => {
+  let maxStreak = 0; 
+  let currentStreak = 0; 
+  let prevVal = null; 
+  let current = head; 
+  
+  while (current != null) {
+    if (current.val != prevVal) {
+      currentStreak = 1; 
+      prevVal = current.val;
+    } else {
+      currentStreak += 1;
+    }
+    
+    if (currentStreak > maxStreak) {
+      maxStreak = currentStreak;
+    }
+    
+    current = current.next; 
+  }
+  return maxStreak;
+};
+
+// This algorithm has linear time and constant space. We know this is maximumally efficient because we need to at least look at every node in the list. 
