@@ -106,6 +106,7 @@ const sumList = (head) => {
 // When we analyze recursive functions, we have to include the call stack so this would be O(n)
 // Both have the same O(n) runtime. In recursion you have O(n) calls. In recusion you have O(n) in the loop. But you have O(n) space. 
 // Because you have n calls in the call stack. 
+// Stay very present in recursive calls. Also, think about what you're doing when it is null. In this case you want to return 0. Otherwise, just add your head.val to the return statement. 
 
 // const linkedListFind = (head, target) => {
 // 	let current = head;
@@ -250,3 +251,36 @@ const mergeLists = (head1, head2) => {
   
   return dummyHead.next; 
 };
+
+// is univalue list
+
+const isUnivalueList = (head) => {
+  if (head.next === null) return true; 
+  let current = head; 
+  let next = head.next; 
+  
+  while (current.next != null) {
+    if (current.val != next.val) {
+      return false; 
+    } else {
+      current = current.next; 
+      next = current.next; 
+    }
+  }
+  return true; 
+  
+};
+
+// This is going to have O(n) time complexity and O(1) space complexity because no new variables are created with the size of the n. 
+
+const isUnivalueList = (head) => {
+  if (head.next === null) return true; 
+  const next = head.next; 
+  if (head.val === next.val) {
+    return isUnivalueList(next);
+  }
+  return false; 
+};
+
+// The recursive solution is O(n) - linear time complexity due to the size of the linked list 
+// and O(n) space complexity due to the amount of calls on the callstack. 
