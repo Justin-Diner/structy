@@ -374,3 +374,66 @@ const removeNode = (head, targetVal, prev = null) => {
   head.next = removeNode(head.next, targetVal);
   return head; 
 };
+
+
+// Insert Node
+const insertNode = (head, value, index) => {
+  let current = head; 
+  let count = 0;
+  
+  if (index === 0) {
+    const newHead = new Node(value);
+    newHead.next = head; 
+    return newHead; 
+  }
+  
+  while (current != null) {
+    if (count === index - 1) {
+      const temp = current.next;
+      current.next = new Node(value);
+      current.next.next = temp; 
+    }
+    
+    count += 1;
+    current = current.next; 
+  }
+  return head; 
+  
+}
+
+// init current var to head 
+// init count var to 0; 
+// iterate through linkedlist while current != null;
+// if count === index - 1; 
+    // temp = current.next; (c)
+    // current.next = new Node(val);
+    // current.next.next = temp; 
+    
+    
+// count+= 1;
+// current = current.next; 
+
+// return head; 
+
+// 0    1    2    3
+// a -> b -> c -> d   /2
+//     cu 
+//     co
+
+
+const insertNodeRec = (head, value, index, count = 0) => {
+  if (head === null) return null; 
+  if (index === 0) {
+    const newHead = new Node(value);
+    newHead.next = head; 
+    return newHead; 
+  }
+  if (count === index - 1) {
+    const temp = head.next; 
+    head.next = new Node(value);
+    head.next.next = temp; 
+    return 
+  }
+  insertNode(head.next, value, index, count + 1);
+  return head; 
+}
