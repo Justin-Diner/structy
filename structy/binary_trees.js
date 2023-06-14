@@ -173,9 +173,62 @@ const treeIncludes = (root, target) => {
   return false; 
 };
 
+// BFS
+const treeIncludes = (root, target) => {
+  if (root === null) return false; 
+  const queue = [root];
+  let current = null;
+  
+  while (queue.length) {
+    current = queue.shift(); 
+    if (current.val === target) return true; 
+    if (current.left) queue.push(current.left);
+    if (current.right) queue.push(current.right)
+  }
+  return false; 
+};
+
 const treeIncludes = (root, target) => {
   if (root === null) return false; 
   if (root.val === target) return true; 
-  if (treeIncludes(root.left, target) || treeIncludes(root.right, target)) return true; 
-  return false; 
+  return treeIncludes(root.left, target) || treeIncludes(root.right, target); 
 };
+
+// Tree Min Value
+const treeMinValue = (root) => {
+  const stack = [ root ];
+  let current = null;
+  let minimum = root.val; 
+  
+  while (stack.length) {
+    current = stack.pop(); 
+    if (current.val < minimum) {
+      minimum = current.val; 
+    }
+    if (current.right) stack.push(current.right);
+    if (current.left) stack.push(current.left);
+  }
+  return minimum;
+};
+
+const treeMinValue = (root) => {
+  if (root === null ) return Infinity
+  const minLeft = treeMinValue(root.left);
+  const minRight = treeMinValue(root.right);
+  return Math.min(root.val, minLeft, minRight)
+};
+
+const treeMinValue = (root) => {
+  const queue = [root];
+
+  let smallest = Infinity;
+  while (queue.length) {
+    const current = queue.shift();
+    if (current.val < smallest) smallest = current.val;
+
+    if (current.left !== null) queue.push(current.left);
+    if (current.right !== null) queue.push(current.right);
+  }
+  return smallest;
+};
+//Note: this solution should really be considered O(n^2) runtime because the JavaScript shift() methods runs in O(n). JavaScript does not have a native queue data structure that is maximally efficient.
