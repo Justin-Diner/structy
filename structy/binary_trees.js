@@ -97,3 +97,85 @@ const depthFirstValues = (root) => {
 	const rightValues = depthFirstValues(root.right);
 	return [root.val, ...leftValues, ...rightValues ]
 }
+
+// Breadth First Values
+const breadthFirstValues = (root) => {
+  if (root === null) return [];
+  const answer = [];
+  const queue = [root];
+  let current = null; 
+  
+  while (queue.length) {
+    current = queue.shift(); 
+    if (current.left) queue.push(current.left);
+    if (current.right) queue.push(current.right);
+    answer.push(current.val);
+  }
+  return answer; 
+};
+
+// TreeSum
+
+const treeSum = (root) => {
+  if (root === null) return 0; 
+  // Breadth First
+  let current = null;
+  const stack = [root];
+  let count = 0; 
+  
+  while (stack.length) {
+    current = stack.pop();
+    count += current.val; 
+    if (current.right) stack.push(current.right);
+    if (current.left) stack.push(current.left);
+  }
+  return count; 
+};
+
+const treeSumRec = (root) => {
+  if (root === null) return 0;
+  return root.val + treeSum(root.left) + treeSum(root.right)
+};
+
+// Time complexity is O(n) which is the amount of nodes in the tree. 
+// Space complexity is also O(n) because of the call stack. 
+// Always consider if the root is null. That should be your initial edge case. 
+
+// Breadth First Search
+const treeSumBFS = (root) => {
+  if (root === null) return 0; 
+  const queue = [root];
+  let current = null;
+  let count = 0; 
+  
+  while (queue.length) {
+    current = queue.shift(); 
+    count += current.val; 
+    if (current.right) queue.push(current.right);
+    if (current.left) queue.push(current.left);
+  }
+  return count; 
+};
+
+// Tree Inlcudes
+const treeIncludes = (root, target) => {
+  if (root === null) return false; 
+  
+  const stack = [root];
+  let current = null; 
+  
+  while (stack.length) {
+    current = stack.pop();
+    if (current.val === target) return true; 
+    if (current.right) stack.push(current.right);
+    if (current.left) stack.push(current.left);
+  }
+  return false; 
+};
+
+const treeIncludes = (root, target) => {
+  if (root === null) return false; 
+  if (root.val === target) return true; 
+  if (treeIncludes(root.left, target) || treeIncludes(root.right, target)) return true; 
+  return false; 
+};
