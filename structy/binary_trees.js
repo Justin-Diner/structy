@@ -232,3 +232,11 @@ const treeMinValue = (root) => {
   return smallest;
 };
 //Note: this solution should really be considered O(n^2) runtime because the JavaScript shift() methods runs in O(n). JavaScript does not have a native queue data structure that is maximally efficient.
+
+// max root to leaf path sum
+const maxPathSum = (root) => {
+  if (root === null) return -Infinity;
+  if (root.left === null && root.right === null) return root.val; 
+  const maxChild = Math.max(maxPathSum(root.left), maxPathSum(root.right))
+  return root.val + maxChild
+}
