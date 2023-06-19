@@ -350,3 +350,15 @@ const treeValueCount = (root, target) => {
 };
 
 // This has an O(n) time complexity because you must traverse the entire binary tree. It also has an O(n) space complexity. 
+// Bottom Right Value
+const bottomRightValue = (root) => {
+  const queue = [ root ];
+  let current;
+  
+  while (queue.length) {
+    current = queue.shift(); 
+    if (current.left) queue.push(current.left);
+    if (current.right) queue.push(current.right);
+  }
+  return current.val; 
+};
