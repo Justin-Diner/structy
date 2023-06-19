@@ -240,3 +240,113 @@ const maxPathSum = (root) => {
   const maxChild = Math.max(maxPathSum(root.left), maxPathSum(root.right))
   return root.val + maxChild
 }
+
+// pathFinder 
+const pathFinder = (root, target) => {
+  if (root === null) return null;
+  if (root.val === target) return [ root.val ];
+
+  const leftSearch = pathFinder(root.left, target);
+  const rightSearch = pathFinder(root.right, target);
+  
+  if (leftSearch != null) {
+    return [ root.val,...leftSearch];
+  }
+  
+  if (rightSearch != null) {
+    return [ root.val, ...rightSearch ]
+  }
+  
+  return null; 
+};
+
+// This is the long way to solve it. If it is a large input, our code is going to get slow. We make a single call for each node of the tree. 
+// We need to be aware of any array functions we do. The spread operator (...) iterates over the array. 
+// The javascript array.concat method also does this. 
+// To get efficient, instead of copying over, just push your value to the existing array. 
+// Remember though, inserting at the front of an array in JS is O(n). 
+// This has O(n squared) run time due to creating an array every time. 
+
+const pathFinder = (root, target) => {
+  const result = pathFinderHelper(root, target);
+  if (result === null) {
+    return null; 
+  } else {
+    return result.reverse(); 
+  }
+}
+
+const pathFinderHelper = (root, target) => {
+  if (root === null) return null;
+  if (root.val === target) return [ root.val ];
+
+  const leftSearch = pathFinderHelper(root.left, target);  
+  if (leftSearch != null) {
+    leftSearch.push(root.val)
+    return leftSearch
+  }
+  
+  const rightSearch = pathFinderHelper(root.right, target);
+  if (rightSearch != null) {
+    rightSearch.push(root.val);
+    return rightSearch;
+  }
+  
+  return null; 
+};
+
+// This has O(n) run time. You aren't creating a new array every time. 
+
+// tree value count 
+const treeValueCount = (root, target) => {
+  if (root === null) return 0; 
+  const stack = [ root ];
+  let current;
+  let count = 0; 
+  
+  while (stack.length) {
+    current = stack.pop(); 
+    if (current.right) stack.push(current.right);
+    if (current.left) stack.push(current.left);
+    if (current.val === target) count += 1;
+  }
+  return count; 
+};
+
+// Tree Value Count Recurisve 
+
+const treeValueCount = (root, target) => {
+  if (root === null) return 0; 
+  if (root.val === target) {
+    return 1 + treeValueCount(root.left, target) + treeValueCount(root.right, target); 
+  } else {
+  return treeValueCount(root.left, target) + treeValueCount(root.right, target); 
+  }
+};
+
+// Alvin Recursive. 
+const treeValueCount = (root, target) => {
+  if (root === null) return 0; 
+	const result = root.val === target ? 1 : 0;
+	return result + treeValueCount(root.left, target) + treeValueCount(root.right, target); 
+};
+
+// These answers are the same. One thing to do when you something that should be one or the other. Here 1 or 0. Is just use the ternary. 
+// That is what Alvin did and it makes code just a bit more clear. 
+
+// Breadth First Search
+const treeValueCount = (root, target) => {
+  if (root === null) return 0; 
+  const queue = [root];
+  let count = 0;
+  
+  while (queue.length) {
+    const current = queue.shift(); 
+    if (current.left) queue.push(current.left);
+    if (current.right) queue.push(current.right);
+    if (current.val === target) count += 1;
+  }
+  return count; 
+};
+
+// This has an O(n) time complexity because you must traverse the entire binary tree. It also has an O(n) space complexity. 
