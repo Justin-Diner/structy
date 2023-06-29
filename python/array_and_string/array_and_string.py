@@ -99,3 +99,69 @@ def anagrams(s1, s2):
     return Counter(s1) == Counter(s2)
 This also works. Just need to import counter. 
 """
+
+# Most Frequent Char
+def most_frequent_char(s):
+  count = {}
+  
+  for char in s:
+    if char not in count:
+      count[char] = 0
+    count[char] += 1
+  
+  best = None
+  
+  for char in s: 
+    if best == None or count[char] > count[best]:
+      best = char
+  
+  return best
+
+# Pair Sum 
+def pair_sum(numbers, target_sum):
+  complements = {}
+  
+  for index, num in enumerate(numbers):
+    complement = target_sum - num
+    
+    if complement in complements:
+      return (complements[complement], index)
+    
+    complements[num] = index
+    
+    
+# Pair Product
+def pair_product(numbers, target_product):
+  complements = {}
+  
+  for i, num in enumerate(numbers):
+    complement = target_product / num
+    
+    if complement in complements:
+      return (complements[complement], i)
+    
+    complements[num] = i
+  
+# Intersection
+def intersection(a, b):
+  items = set(a)
+  
+  return [ele for ele in b if ele in items]
+
+# Five Sort
+def five_sort(nums):
+  i = 0 
+  j = len(nums) - 1 
+  
+  while i <= j:
+    if nums[j] == 5:
+      j -= 1
+    elif nums[i] == 5:
+      nums[i], nums[j] = nums[j], nums[i]
+      i += 1
+    else:
+      i += 1
+  
+  return nums
+
+
