@@ -83,4 +83,25 @@ def tree_includes(root, target):
   if root is None: return False
   if root.val is target: return True
   return tree_includes(root.left, target) or tree_includes(root.right, target)
+
+# tree min value
+def tree_min_value(root):
+  min_val = root.val
+  stack = [root]
   
+  while stack:
+    current = stack.pop()
+    if current.right: stack.append(current.right)
+    if current.left: stack.append(current.left)
+    if current.val < min_val: min_val = current.val
+  
+  return min_val
+
+# tree min value (rec)
+def tree_min_value(root):
+  if root is None: return float("inf")
+  left = tree_min_value(root.left)
+  right = tree_min_value(root.right)
+  return min(root.val, left, right)
+
+# max root to leaf path sum
