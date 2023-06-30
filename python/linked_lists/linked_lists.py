@@ -221,3 +221,13 @@ def remove_node(head, target_val):
       current.next = next_node
       return head
     current = current.next
+    
+def remove_node(head, target_val):
+  if head is None: 
+    return None
+  
+  if head.val == target_val:
+    return head.next
+  
+  head.next = remove_node(head.next, target_val)
+  return head
