@@ -133,3 +133,91 @@ def zipper_lists(head_1, head_2):
   next_1 = head_1.next
   head_1.next = zipper_lists(head_2, next_1)
   return head_1
+
+# merge lists 
+# My solve:
+def merge_lists(head_1, head_2):
+  tail = None 
+  current_1 = None
+  current_2 = None
+  head = None
+
+  if head_1.val < head_2.val:
+    head = head_1
+    tail = head_1
+    current_1 = head_1.next
+    current_2 = head_2
+  else:
+    head = head_2
+    tail = head_2
+    current_2 = head_2.next
+    current_1 = head_1
+    
+  while current_1 is not None and current_2 is not None:
+    if current_1.val >= current_2.val:
+      tail.next = current_2
+      current_2 = current_2.next
+    else: 
+      tail.next = current_1
+      current_1 = current_1.next
+    tail = tail.next
+    
+  if current_1 is not None:
+    tail.next = current_1
+  if current_2 is not None:
+    tail.next = current_2
+    
+  return head
+
+# merge lists - Recursion 
+def merge_lists(head_1, head_2):
+  if head_1 is None and head_2 is None:
+    return None
+  if head_1 is None: 
+    return head_2
+  if head_2 is None:
+    return head_1
+  if head_1.val < head_2.val:
+    head_1.next = merge_lists(head_1.next, head_2)
+    return head_1
+  else:
+    head_2.next = merge_lists(head_1, head_2.next)
+    return head_2
+
+# is univalue list 
+def is_univalue_list(head):
+  current = head
+  val = head.val
+  
+  while current is not None: 
+    if current.val != val:
+      return False
+    current = current.next
+  
+  return True
+
+# is univalue recurisve 
+def is_univalue_list(head, prev = None):
+  if head is None: 
+    return True
+  if prev is None or head.val == prev:
+    return is_univalue_list(head.next, head.val)
+  else:
+    return False 
+
+# remove node 
+def remove_node(head, target_val):
+  if head.val == target_val and head.next is None: 
+    return None
+  if head.val == target_val:
+    return head.next
+  
+  current = head
+  
+  while current is not None: 
+    next = current.next
+    if next.val is target_val and next is not None: 
+      next_node = current.next.next
+      current.next = next_node
+      return head
+    current = current.next
