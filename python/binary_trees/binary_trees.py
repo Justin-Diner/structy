@@ -35,3 +35,52 @@ def breadth_first_values(root):
     answer.append(current.val)
   
   return answer
+
+# tree sum
+def tree_sum(root):
+  sum = 0 
+  stack = [root]
+  if root is None: return sum
+  
+  while stack:
+    current = stack.pop()
+    if current.right is not None: stack.append(current.right)
+    if current.left is not None: stack.append(current.left)
+    sum += current.val
+  
+  return sum
+
+# tree sum breadth first 
+def tree_sum(root):
+  sum = 0 
+  queue = [root]
+  if root is None: return sum
+  
+  while queue:
+    current = queue.pop(0)
+    if current.left is not None: queue.append(current.left)
+    if current.right is not None: queue.append(current.right)
+    sum += current.val
+  
+  return sum
+  
+# tree includes (iterative)
+def tree_includes(root, target):
+  if root is None: return False
+  
+  stack = [root]
+  while stack: 
+    current = stack.pop()
+    if current.right: stack.append(current.right)
+    if current.left: stack.append(current.left)
+    if current.val is target: 
+      return True
+  
+  return False
+
+# tree includes (rec)
+def tree_includes(root, target):
+  if root is None: return False
+  if root.val is target: return True
+  return tree_includes(root.left, target) or tree_includes(root.right, target)
+  
