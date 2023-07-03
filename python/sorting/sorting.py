@@ -190,7 +190,24 @@ def insertion_sort(list):
 #j                5
 
 
-
-print(insertion_sort(to_sort))
 # Selection Sort
+# Selection sort divides the list into sorted and unsorted portions, repeatedly finding the smallest element in the unsorted portion and swapping it with the first unsorted element. It has a time complexity of O(n^2), making it inefficient for large lists, as it performs the same number of comparisons regardless of initial order. 
+def selection_sort(list):
+    for i in range(0, len(list) - 1):
+        min_index_value = i
+        
+        for j in range(i + 1, len(list)):
+            if list[j] < list[min_index_value]:
+                min_index_value = j
+        
+        if min_index_value is not i:
+            list[i], list[min_index_value] = list[min_index_value], list[i]
+    
+    return list
 
+print(selection_sort(to_sort))
+
+#     [1, 2, 3, 4, 5, 6, 7]
+#i                          
+#miv                                      
+#j                                                                 
