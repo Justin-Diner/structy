@@ -119,12 +119,14 @@ def _path_finder(root, target):
   if root is None: return None
   if root.val is target: return [root.val]
 
-  left = path_finder(root.left, target)
+  left = _path_finder(root.left, target)
   if left is not None: 
     left.append(root.val)
     return left
   
-  right = path_finder(root.right, target)
+  right = _path_finder(root.right, target)
   if right is not None: 
     right.append(root.val)
     return right 
+
+  return None
