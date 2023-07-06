@@ -119,27 +119,14 @@ def _path_finder(root, target):
   if root is None: return None
   if root.val is target: return [root.val]
 
-  left = path_finder(root.left, target)
+  left = _path_finder(root.left, target)
   if left is not None: 
     left.append(root.val)
     return left
   
-  right = path_finder(root.right, target)
+  right = _path_finder(root.right, target)
   if right is not None: 
     right.append(root.val)
     return right 
 
-# Tree Value Count:
-def tree_value_count(root, target):
-  if root is None: 
-    return 0
-  count = 0
-  stack = [root]
-  
-  while stack: 
-    current = stack.pop()
-    if current.right: stack.append(current.right)
-    if current.left: stack.append(current.left)
-    if current.val == target: count += 1
-  
-  return count
+  return None
