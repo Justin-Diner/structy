@@ -10,17 +10,18 @@ def binary_search(arr, target):
   if arr[mid] == target:
     return mid
   elif target > arr[mid]:
-    greater_arr = arr[mid+1:]
-    result = binary_search(greater_arr, target)
+    larger_side = arr[mid+1:]
+    result = binary_search(larger_side, target)
     if result is not None: 
       return result + mid + 1
   else:
-    less_arr = arr[0:mid]
-    other_result = binary_search(less_arr, target)
-    if other_result is not None: 
+    lesser_side = arr[0:mid]
+    result = binary_search(lesser_side, target)
+    if result is not None: 
       return result
   
   return None
+
 
 print(binary_search(arr, 13))
 
