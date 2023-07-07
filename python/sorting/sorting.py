@@ -3,12 +3,14 @@ to_sort = [3, 2, 1, 4, 5, 7, 6]
 # Quick Sort   
 # Invented by C.A.R. Hoare - The quick sort algorithm attempts to separate the list of elements into two parts and then sort each part recursively. It uses a divide and conquer strategy. In quick sort, the partition of the list is performed based on the pivot element. Here, the pivot is the first element in the list. 
 # Best O(n log(n)) - Average O(n log(n)) - Worst - O(n^2)
+
 def quick_sort(list):
     if len(list) <= 1: return list
     pivot = list.pop(0)
     left = quick_sort([item for item in list if item <= pivot])
     right = quick_sort([item for item in list if item > pivot])
     return left + [pivot] + right
+    
     
 #       [2, 1, 4, 5, 7, 6]
 #p      3
@@ -50,17 +52,15 @@ def quick_sort(list):
 #return []6
 
 # Bubble Sort
-# Bubble Sort is a simple sorting algorithm that compares adjacent elements and swaps them if they are in the wrong order. This process continues until the list is sorted. Worst case time compleixty is O(n^2)
+# Bubble Sort is a simple sorting algorithm that compares adjacent elements and swaps them if they are in the wrong order. This process continues until the list is sorted. Worst: O(n^2)
 def bubble_sort(list):
     sorted = False
-    
     while not sorted:
         sorted = True
         for i in range(0, len(list) - 1):
             if list[i] > list[i+1]:
                 list[i], list[i+1] = list[i+1], list[i]
                 sorted = False
-    
     return list
 
 #    [3, 2, 1, 4, 5, 7, 6]
@@ -211,3 +211,5 @@ print(selection_sort(to_sort))
 #i                          
 #miv                                      
 #j                                                                 
+
+print(dir([1, 2, 3]))
