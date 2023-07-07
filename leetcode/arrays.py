@@ -34,3 +34,14 @@ class Solution:
             nums[i] = nums[i] * nums[i]
             
         return sorted(nums)
+
+# Next I'm going to look at several other operations: 
+#   1. Insert
+#   2. Delete
+#   3. Search 
+
+# Insert - Duplicate Zeroes 
+    for i in range(len(arr) -2, -1, -1):
+        if arr[i] == 0:
+            arr.pop()
+            arr.insert(i+1, 0)
