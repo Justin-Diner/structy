@@ -45,3 +45,43 @@ class Solution:
         if arr[i] == 0:
             arr.pop()
             arr.insert(i+1, 0)
+            
+# Merge
+
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        new_arr = []
+        i = 0
+        j = 0 
+        
+        while i != m and j != n:
+            if nums1[i] < nums2[j]:
+                new_arr.append(nums1[i])
+                i +=1
+            else:
+                new_arr.append(nums2[j])
+                j += 1
+        
+        while i != m: 
+            new_arr.append(nums1[i])
+            i +=1 
+        
+        while j != n:
+            new_arr.append(nums2[j])
+            j+=1 
+        
+        for i in range(len(new_arr)):
+            nums1[i] = new_arr[i]
+    
+# Remove Element 
+    def removeElement(self, nums: List[int], val: int) -> int:
+        index = 0
+
+        for i in range(len(nums)):
+            if nums[i] != val:
+                nums[index] = nums[i]
+                index += 1
+        return index
