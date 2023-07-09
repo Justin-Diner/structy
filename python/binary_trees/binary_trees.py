@@ -130,3 +130,6 @@ def _path_finder(root, target):
     return right 
 
   return None
+
+
+# all tree paths 
