@@ -131,5 +131,40 @@ def _path_finder(root, target):
 
   return None
 
+# all tree paths
+def all_tree_paths(root):
+  if root is None: return []
+  if root.left is None and root.right is None:
+    return [[root.val]]
+  
+  answer = []
+  
+  left = all_tree_paths(root.left)
+  for path in left: 
+    answer.append([root.val] + path)
+  right = all_tree_paths(root.right)
+  for path in right: 
+    answer.append([root.val] + path)
+  
+  return answer
 
-# all tree paths 
+# Tree Paths:
+def tree_levels(root):
+  if root is None: 
+    return []
+  
+  levels = []
+  stack = [ (root, 0) ]
+  while stack: 
+    node, level_num = stack.pop()
+    if len(levels) == level_num:
+      levels.append([node.val])
+    else: 
+      levels[level_num].append(node.val)
+      
+    if node.right is not None: 
+      stack.append((node.right, level_num + 1))
+    if node.left is not None: 
+      stack.append((node.left, level_num + 1))
+      
+  return levels

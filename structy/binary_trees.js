@@ -363,3 +363,50 @@ const bottomRightValue = (root) => {
   return current.val; 
 };
 
+// all Tree Paths 
+const allTreePaths = (root) => {
+    if (root === null) return []
+    
+    if (root.left === null && root.right === null) return [[root.val]]
+    
+    const answer = []
+    
+    const left = allTreePaths(root.left)
+    for (let path of left) {
+      answer.push([root.val, ...path])
+    }
+    const right = allTreePaths(root.right)
+    for (let path of right) {
+      answer.push([root.val, ...path])
+    }
+    return answer
+  };
+
+// Tree Levels 
+const treeLevels = (root) => {
+    if (root === null) {
+      return []
+    }
+    
+    const levels = []
+    const stack = [[root, 0]]
+    
+    while (stack.length > 0) {
+      const [node, node_level] = stack.pop()
+      
+      if (levels.length === node_level) {
+        levels.push([node.val])
+      } else {
+        levels[node_level].push(node.val)
+      }
+      
+      if (node.right) {
+        stack.push([node.right, node_level + 1])
+      }
+      if (node.left) {
+        stack.push([node.left, node_level + 1])
+      }
+    }
+    
+    return levels
+  };
