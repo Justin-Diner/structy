@@ -410,3 +410,42 @@ const treeLevels = (root) => {
     
     return levels
   };
+
+// Level Averages
+const levelAverages = (root) => {
+    if (root === null) return []
+    
+    const averages = []
+    const levels = []
+    const queue = [[root, 0]]
+    
+    while (queue.length) {
+      const [node, node_level] = queue.shift()
+      if (levels.length === node_level) {
+        levels.push([node.val])
+      } else {
+        levels[node_level].push(node.val)
+      }
+      if (node.left) {
+        queue.push([node.left, node_level + 1])
+      }
+      if (node.right) {
+        queue.push([node.right, node_level + 1])
+      }
+    }
+  
+    let total = 0
+    let average = 0
+  
+    for (level of levels) {
+      for (ele of level) {
+        total += ele
+      }
+      average = total / level.length
+      averages.push(average)
+      total = 0
+    }
+    return averages
+    
+  };
+  

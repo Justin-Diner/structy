@@ -168,3 +168,36 @@ def tree_levels(root):
       stack.append((node.left, level_num + 1))
       
   return levels
+
+# Level Averages
+def level_averages(root):
+  if root == None: return []
+  levels = define_levels(root)
+  averages = []
+  for level in levels:
+    averages.append(find_average(level))
+  
+  return averages
+
+def define_levels(root):
+  levels = []
+  queue = [[root, 0]]
+  
+  while len(queue) > 0:
+    [node, node_level] = queue.pop(0)
+    if len(levels) == node_level:
+      levels.append([node.val])
+    else:
+      levels[node_level].append(node.val)
+    if node.left:
+      queue.append([node.left, node_level + 1])
+    if node.right:
+      queue.append([node.right, node_level + 1])
+  
+  return levels
+
+def find_average(arr):
+  total = sum(arr)
+  average = total / len(arr)
+  return average
+  
