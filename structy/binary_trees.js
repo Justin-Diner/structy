@@ -449,3 +449,35 @@ const levelAverages = (root) => {
     
   };
   
+  // Leaf List
+
+  const leafList = (root) => {
+    if (root === null) return []
+    const stack = [root]
+    const leafs = []
+    
+    while (stack.length) {
+      const current = stack.pop()
+      if (current.right) stack.push(current.right)
+      if (current.left) stack.push(current.left)
+      if (current.left === null && current.right === null) {
+        leafs.push(current.val)
+      }
+    }
+    return leafs
+  };
+
+// Leaf LIst
+const leafList = (root) => {
+    const leaves = [];
+    fillLeaves(root, leaves);
+    return leaves; 
+  };
+  
+  const fillLeaves = (root, leaves) => {
+    if (root === null) return; 
+    if (root.left === null && root.right === null) leaves.push(root.val)
+    fillLeaves(root.left, leaves);
+    fillLeaves(root.right, leaves);
+  } 
+

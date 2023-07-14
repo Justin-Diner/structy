@@ -201,3 +201,16 @@ def find_average(arr):
   average = total / len(arr)
   return average
   
+# Leaf List
+def leaf_list(root):
+  if root == None: return []
+  leaves = []
+  fill_leaves(root, leaves)
+  return leaves
+
+def fill_leaves(root_node, leaves):
+  if root_node == None: return 
+  if root_node.left == None and root_node.right == None:
+    leaves.append(root_node.val)
+  fill_leaves(root_node.left, leaves)
+  fill_leaves(root_node.right, leaves)
