@@ -45,3 +45,28 @@ graph = {
 #print(depth_first_print_rec(graph, "a"))
 #print(breadth_first_print(graph, "a"))
 print(breadth_first_print_deque(graph, "a"))
+
+# has_path(recursive)
+def has_path_rec(graph, src, dst):
+  if src == dst: return True
+  for neighbor in graph[src]:
+    if has_path_rec(graph, neighbor, dst):
+      return True
+  return False 
+
+# has_path BFS 
+def has_path_bfs(graph, src, dst):
+  queue = deque([src])
+  
+  while queue:
+    current = queue.popleft()
+    if current == dst: return True
+    for neighbor in graph[current]:
+      queue.append(neighbor)
+  
+  return False 
+
+# n = number of nodes
+# e = number of edges
+# Time: O(e)
+# Space: O(n) 

@@ -71,7 +71,7 @@ const hasPathRec = (graph, src, dst) => {
   };
 
 // My solve queue
-const hasPathQueue = (graph, src, dst) => {
+const hasPathBFS = (graph, src, dst) => {
     const queue = [ src ]
     
     while (queue.length > 0) {
@@ -85,3 +85,37 @@ const hasPathQueue = (graph, src, dst) => {
     }
     return false
   };
+
+
+// Undirected Path
+const undirectedPath = (edges, nodeA, nodeB) => {
+    const graph = buildGraph(edges)
+    const visited = {}
+    return hasPath(graph, nodeA, nodeB, new Set())
+  };
+  
+  const hasPath = (graph, src, dst, visited) => {
+    if (src === dst) return true
+    if (visited.has(src)) return false
+    visited.add(src)
+    
+    for (let neighbor of graph[src]) {
+      if (hasPath(graph, neighbor, dst, visited) === true) return true
+    }
+    return false
+  } 
+  
+  const buildGraph = (edges) => {
+    const graph = {}
+    
+    for (let edge of edges) {
+      const [a, b] = edge
+      if (!(graph[a])) graph[a] = []
+      if (!(graph[b])) graph[b] = []
+      graph[a].push(b)
+      graph[b].push(a)
+    }
+    
+    return graph
+  }
+  
