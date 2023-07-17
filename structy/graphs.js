@@ -118,4 +118,9 @@ const undirectedPath = (edges, nodeA, nodeB) => {
     
     return graph
   }
+
+// n = number of nodes 
+// e = number of edges
+// Time: O(e)
+// Space: O(e)
   
