@@ -1,3 +1,5 @@
+from collections import deque
+
 def depth_first_print(graph, start):
     stack = [ start ]
     
@@ -21,6 +23,15 @@ def breadth_first_print(graph, start):
         print(current) #
         for neighbor in graph[current]:
             queue.append(neighbor) 
+
+def breadth_first_print_deque(graph, start):
+    queue = deque([ start ])
+    while queue:
+        current = queue[0]
+        print(current)
+        queue.popleft()
+        for neighbor in graph[current]:
+            queue.append(neighbor)
     
 graph = {
     "a": ["b", "c"], 
@@ -32,4 +43,5 @@ graph = {
 }
 
 #print(depth_first_print_rec(graph, "a"))
-print(breadth_first_print(graph, "a"))
+#print(breadth_first_print(graph, "a"))
+print(breadth_first_print_deque(graph, "a"))
