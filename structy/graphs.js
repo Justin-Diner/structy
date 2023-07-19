@@ -29,21 +29,12 @@ const breadthFirstPrint = (graph, start) => {
     }
 }
 
-const graph = {
-    a: ['b', 'c'],
-    b: ['d'],
-    c: ['e'],
-    d: ['f'],
-    e: [],
-    f: []
-}
-
 //depthFirstPrint(graph, 'a') // abdfce
 //depthFirstPrintRec(graph, 'a')
 //breadthFirstPrint(graph, "a")
 
 // hasPath - My Solve (stack)
-const hasPath = (graph, src, dst) => {
+const hasPathMySolve = (graph, src, dst) => {
     const stack = [ src ]
     
     while (stack.length > 0) {
@@ -123,4 +114,47 @@ const undirectedPath = (edges, nodeA, nodeB) => {
 // e = number of edges
 // Time: O(e)
 // Space: O(e)
+
+// DFS Rec
+
+const graph = {
+    a: ['b', 'c'],
+    b: ['d'],
+    c: ['e'],
+    d: ['f'],
+    e: [],
+    f: []
+}
+
+const graphDFSRecursive = (graph, current) => {
+    console.log(current)
+    for (let neighbor of graph[current]) {
+        graphDFSRecursive(graph, neighbor)
+    }
+}
+
+console.log(graphDFSRecursive(graph, "a"))
+
+// Connected Components Count
+const connectedComponentsCount = (graph) => {
+    const visited = new Set()
+    let count = 0; 
+    
+    for (let node in graph) {
+      if (explore(graph, node, visited) === true) {
+        count += 1
+      }
+    } 
+    return count;
+  }
   
+  const explore = (graph, current, visited) => {
+    if (visited.has(String(current))) return false; 
+    
+    visited.add(String(current));
+    
+    for (let neighbor of graph[current]) {
+      explore(graph, neighbor, visited)
+    }
+    return true
+  }
