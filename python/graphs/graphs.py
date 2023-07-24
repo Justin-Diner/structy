@@ -128,3 +128,71 @@ def explore(graph, current, visited):
     return True
 
 print(connectedComponentsCount(graph))
+
+def shortest_path(edges, node_a, node_b):
+    graph = _create_graph(edges)
+    visited = set()
+    queue = [ [node_a, 0] ]
+    
+    while len(queue) > 0:
+        [node, level] = queue.pop(0)
+        
+        if node == node_b:
+            return level
+        
+        for neighbor in graph[node]:     
+            if node not in visited:
+                visited.add(node)
+                queue.append([neighbor, level + 1])
+                
+    return -1 
+
+def _create_graph(edges):
+    graph = {}
+    
+    for node in edges: 
+        [node_a, node_b] = node
+        if node_a not in graph:
+            graph[node_a] = []
+        if node_b not in graph:
+            graph[node_b] = []
+    
+        if node_a in graph:
+            graph[node_a].append(node_b)
+        if node_b in graph:
+            graph[node_b].append(node_a)
+    
+    return graph
+
+def shortest_path(edges, node_A, node_B):
+    graph = _create_graph2(edges)
+    visited = set([ node_A ])
+    queue = deque([ (node_A, 0) ]) 
+    
+    while queue:
+        node, level = queue.popleft()
+        
+        if node == node_B:
+            return level
+        
+        for neighbor in graph[node]:     
+            if neighbor not in visited:
+                visited.add(node)
+                queue.append((neighbor, level + 1))
+                
+    return -1 
+
+def _create_graph2(edges):
+    graph = {}
+    
+    for node in edges: 
+        node_a, node_b = node
+        if node_a not in graph:
+            graph[node_a] = []
+        if node_b not in graph:
+            graph[node_b] = []
+    
+        graph[node_a].append(node_b)
+        graph[node_b].append(node_a)
+    
+    return graph
