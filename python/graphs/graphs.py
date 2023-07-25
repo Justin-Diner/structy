@@ -269,4 +269,4 @@ grid = [
   ['L', 'L', 'W', 'W', 'W'],
 ]
 
-print(minimum_island(grid))
+print(minimum_island(grid)) 

@@ -39,9 +39,8 @@ const hasPathMySolve = (graph, src, dst) => {
     
     while (stack.length > 0) {
       const current = stack.pop()
-      if (current === dst) {
-        return true
-      }
+      if (current === dst) return true
+
       for (let neighbor of graph[current]) {
         stack.push(neighbor)
       }
@@ -67,9 +66,8 @@ const hasPathBFS = (graph, src, dst) => {
     
     while (queue.length > 0) {
       const current = queue.shift()
-      if (current === dst) {
-        return true
-      }
+      if (current === dst) return true
+      
       for (let neighbor of graph[current]) {
         queue.push(neighbor)
       }
@@ -100,11 +98,11 @@ const undirectedPath = (edges, nodeA, nodeB) => {
     const graph = {}
     
     for (let edge of edges) {
-      const [a, b] = edge
-      if (!(graph[a])) graph[a] = []
-      if (!(graph[b])) graph[b] = []
-      graph[a].push(b)
-      graph[b].push(a)
+        const [a, b] = edge
+        if (!(graph[a])) graph[a] = []
+        if (!(graph[b])) graph[b] = []
+        graph[a].push(b)
+        graph[b].push(a)
     }
     
     return graph
@@ -162,53 +160,61 @@ const connectedComponentsCount = (graph) => {
 // Shortest Path 
 const shortestPath = (edges, nodeA, nodeB) => {
     const graph = adjList(edges);
+    const queue = [ [nodeA, 0] ];
     const visited = new Set()
-    const queue = [ [nodeA, 0] ]
-    
+
     while (queue.length > 0) {
-      const [node, distance] = queue.shift()
-      if (node === nodeB) return distance;
-      
-      for (let neighbor of graph[node]) {
-        if (!visited.has(neighbor)) {
-          visited.add(neighbor);
-          queue.push([neighbor, distance + 1])
+        const [node, level] = queue.shift();
+        if (node === nodeB) return level; 
+
+        for (let neighbor of graph[node]) {
+            if (!visited.has(neighbor)) {
+                visited.add(neighbor)
+                queue.push([neighbor, level + 1])
+            }
         }
-      }
-    }
+    } 
     return -1
   };
-  
+
   const adjList = (edges) => {
     const final = {}
     
     for (let edge of edges) {
-      const [node1, node2] = edge
-      if (!(final[node1])) {
-        final[node1] = []
-      }
-      if (!(final[node2])) {
-        final[node2] = []
-      }
-      
-      final[node1].push(node2)
-      final[node2].push(node1)
-    }
-    
+        const [node1, node2] = edge
+        if (!(final[node1])) {
+            final[node1] = []
+        }
+        if (!(final[node2])) {
+            final[node2] = []
+        }
+        final[node1].push(node2)
+        final[node2].push(node1)
+    }    
     return final
   }
+  
+edges = [
+  ['w', 'x'],
+  ['x', 'y'],
+  ['z', 'y'],
+  ['z', 'v'],
+  ['w', 'v']
+]
+
+console.log('Shortest Path: ' + shortestPath(edges, 'w', 'z'))
 
 const islandCount = (grid) => {
-let islands = 0;
-const visited = new Set();
+    let islands = 0;
+    const visited = new Set();
 
-for (let r = 0; r < grid.length; r += 1) {
-    for (let c = 0; c < grid[0].length; c+= 1) {
-    if (exploreIsl(grid, r, c, visited) === true) {
-        islands += 1;
+    for (let r = 0; r < grid.length; r += 1) {
+        for (let c = 0; c < grid[0].length; c+= 1) {
+            if (exploreIsl(grid, r, c, visited) === true) {
+                islands += 1;
+            }
+        }
     }
-    }
-}
 return islands;
 };
   
@@ -276,3 +282,9 @@ grid = [
 ];
 
 console.log(minimumIsland(grid)) // 2
+
+const closestCarrot = (grid, startRow, startCol) => {
+    shortestPath = -1;
+    let pos = [startRow, startCol]
+    const queue = [ pos ]    
+}
