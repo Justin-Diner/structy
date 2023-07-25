@@ -196,3 +196,32 @@ def _create_graph2(edges):
         graph[node_b].append(node_a)
     
     return graph
+
+def island_count(grid):
+  visited = set()
+  islands = 0 
+  
+  for row in range(len(grid)):
+    for col in range(len(grid[0])):
+      if exploreIsland(grid, row, col, visited) == True:
+        islands += 1 
+  
+  return islands
+
+def exploreIsland(grid, r, c, visited):
+  inRow =  0 <= r and r < len(grid)  
+  inCol =  0 <= c and c < len(grid[0]) 
+  if inRow == False or inCol == False: 
+    return False
+  
+  if grid[r][c] == "W": return False
+
+  pos = (r, c)
+  if pos in visited: return False
+  visited.add(pos)
+  
+  exploreIsland(grid, r-1, c, visited)
+  exploreIsland(grid, r+1, c, visited)
+  exploreIsland(grid, r, c-1, visited)
+  exploreIsland(grid, r, c+1, visited)
+  return True
