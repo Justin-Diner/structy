@@ -284,7 +284,7 @@ grid = [
 console.log(minimumIsland(grid)) // 2
 
 const closestCarrot = (grid, startRow, startCol) => {
-    shortestPath = -1;
-    let pos = [startRow, startCol]
-    const queue = [ pos ]    
+  shortestPath = -1;
+  let pos = [startRow, startCol]
+  const queue = [ pos ]    
 }
