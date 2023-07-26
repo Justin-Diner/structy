@@ -91,7 +91,7 @@ const depthFirstValues = (root) => {
 };
 
 // Recursive
-const depthFirstValues = (root) => {
+const depthFirstValuesDFS = (root) => {
 	if (root === null) return [];
 	const leftValues = depthFirstValues(root.left);
 	const rightValues = depthFirstValues(root.right);
@@ -174,7 +174,7 @@ const treeIncludes = (root, target) => {
 };
 
 // BFS
-const treeIncludes = (root, target) => {
+const treeIncludesBFS = (root, target) => {
   if (root === null) return false; 
   const queue = [root];
   let current = null;
@@ -188,7 +188,7 @@ const treeIncludes = (root, target) => {
   return false; 
 };
 
-const treeIncludes = (root, target) => {
+const treeIncludesRec = (root, target) => {
   if (root === null) return false; 
   if (root.val === target) return true; 
   return treeIncludes(root.left, target) || treeIncludes(root.right, target); 
@@ -211,14 +211,14 @@ const treeMinValue = (root) => {
   return minimum;
 };
 
-const treeMinValue = (root) => {
+const treeMinValueDFS = (root) => {
   if (root === null ) return Infinity
   const minLeft = treeMinValue(root.left);
   const minRight = treeMinValue(root.right);
   return Math.min(root.val, minLeft, minRight)
 };
 
-const treeMinValue = (root) => {
+const treeMinValueBFS = (root) => {
   const queue = [root];
 
   let smallest = Infinity;
@@ -267,7 +267,7 @@ const pathFinder = (root, target) => {
 // Remember though, inserting at the front of an array in JS is O(n). 
 // This has O(n squared) run time due to creating an array every time. 
 
-const pathFinder = (root, target) => {
+const pathFinderr = (root, target) => {
   const result = pathFinderHelper(root, target);
   if (result === null) {
     return null; 
@@ -315,7 +315,7 @@ const treeValueCount = (root, target) => {
 
 // Tree Value Count Recurisve 
 
-const treeValueCount = (root, target) => {
+const treeValueCountRec = (root, target) => {
   if (root === null) return 0; 
   if (root.val === target) {
     return 1 + treeValueCount(root.left, target) + treeValueCount(root.right, target); 
@@ -325,7 +325,7 @@ const treeValueCount = (root, target) => {
 };
 
 // Alvin Recursive. 
-const treeValueCount = (root, target) => {
+const treeValueCountAlRec = (root, target) => {
   if (root === null) return 0; 
 	const result = root.val === target ? 1 : 0;
 	return result + treeValueCount(root.left, target) + treeValueCount(root.right, target); 
@@ -335,7 +335,7 @@ const treeValueCount = (root, target) => {
 // That is what Alvin did and it makes code just a bit more clear. 
 
 // Breadth First Search
-const treeValueCount = (root, target) => {
+const treeValueCountBFS = (root, target) => {
   if (root === null) return 0; 
   const queue = [root];
   let count = 0;
@@ -451,7 +451,7 @@ const levelAverages = (root) => {
   
   // Leaf List
 
-  const leafList = (root) => {
+  const leafList1 = (root) => {
     if (root === null) return []
     const stack = [root]
     const leafs = []
@@ -468,7 +468,7 @@ const levelAverages = (root) => {
   };
 
 // Leaf LIst
-const leafList = (root) => {
+const leafList2 = (root) => {
     const leaves = [];
     fillLeaves(root, leaves);
     return leaves; 
