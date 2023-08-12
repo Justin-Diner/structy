@@ -15,4 +15,4 @@ The curriculum for Strucy covers:
 7. Exhaustive Recursion
 8. A Mixed Recall
 
-
+Additionally, I'll be covering Leetcode easy, medium, and hard questions. 
