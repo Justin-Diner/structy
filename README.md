@@ -7,12 +7,20 @@ Currently, I'm working on the Graphs portion of Structy and medium Leetcode prob
 The curriculum for Strucy covers:
 
 1. Array and String
-2. Linked Lists
-3. Binary Trees
-4. Graph
-5. Dynamic Programming
-6. Stacks
-7. Exhaustive Recursion
-8. A Mixed Recall
+   * Two Pointers
+   * Hash Maps
+3. Linked Lists
+   * Traversal
+   * Reversal
+   * Sum
+5. Binary Trees
+   * Depth First Search
+   * Breadth First Search
+   * Recursive Traversal 
+7. Graph
+8. Dynamic Programming
+9. Stacks
+10. Exhaustive Recursion
+11. A Mixed Recall
 
 Additionally, I'll be covering Leetcode easy, medium, and hard questions. 
