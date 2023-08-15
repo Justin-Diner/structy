@@ -18,6 +18,8 @@ The curriculum for Strucy covers:
    * Breadth First Search
    * Recursive Traversal 
 7. Graph
+   * Depth First Search
+   * Breadth First Search
 8. Dynamic Programming
 9. Stacks
 10. Exhaustive Recursion
