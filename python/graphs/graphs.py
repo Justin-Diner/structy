@@ -249,7 +249,7 @@ def find_size(grid, r, c, visited):
     
     pos = (r, c)
     if pos in visited:
-        return 0
+        return 
     visited.add(pos)
     
     size = 1

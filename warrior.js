@@ -1,15 +1,25 @@
 class Human {
   constructor(name) {
     this.name = name; 
-    this.health = 100; 
+    this._health = 100; 
   }
   attack = (human) => {
+    console.log(`${this.name} attacks!`)
     human.health -= 10; 
-    console.log(this.deathCheck());
+    this.deathCheck();
+  }
+
+  get health() {
+    return this._health;
+  }
+
+  set health(newHealth) {
+    this._health = newHealth; 
+    this.deathCheck();
   }
 
   deathCheck = () => {
-    if (this.health <= 0) {
+    if (this._health <= 0) {
       console.log(`${this.name} has Died!!!`)
     } 
   }
@@ -19,6 +29,7 @@ const john = new Human("John");
 const sara = new Human("Sara")
 sara.health = 1; 
 john.attack(sara);
-console.log(sara.deathCheck())
+console.log(sara.health)
+
 
 
