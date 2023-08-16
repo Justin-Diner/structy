@@ -25,11 +25,36 @@ class Human {
   }
 }
 
-const john = new Human("John");
-const sara = new Human("Sara")
-sara.health = 1; 
+class Warrior extends Human {
+  constructor(name) {
+    super(name)
+    this.weapon = "Sword"
+  }
+
+  attack = (person) => {
+    console.log(`${this.name} attacks ${person.name} with his ${this.weapon}`)
+    person.health = person.health - 10;
+    console.log(`${person.name}'s health is now ${person.health}`)
+  }
+}
+
+class Mage extends Human {
+  constructor(name) {
+    super(name)
+    this.weapon = "Wand"
+  }
+
+  heal = () => {
+    console.log(`${this.name} heals for 10 health`)
+    this.health += 10; 
+    console.log(`${this.name}'s health is now ${this.health}`)
+  }
+}
+
+const john = new Warrior("John");
+const sara = new Mage("Sara")
 john.attack(sara);
-console.log(sara.health)
+sara.heal()
 
 
 
