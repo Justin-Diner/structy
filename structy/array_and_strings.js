@@ -156,7 +156,7 @@
 	 
 	};
 
-	// Second attempt: My logic was correct here. I messed up populating the hashmap. Make sure that you key is what it is. In my version, I did not create a variable for num. Instead, I just put in numbers[i]. This was a mistake and resulted in an error. 
+	// Second attempt: My logic was correct here. I messed up populating the hashmap. Make sure that your key is what it is. In my version, I did not create a variable for num. Instead, I just put in numbers[i]. This was a mistake and resulted in an error. 
 	
 	// Hashmaps give O(1) lookup. 
 	// When you are searching for a pair, look for a complement. 

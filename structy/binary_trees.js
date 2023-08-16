@@ -1,8 +1,8 @@
-// Depth First Traversal 
+// Depth First Traversal (Stack) 
 
-// Breadth First Traversal 
+// Breadth First Traversal (Queue) 
 
-// Tress contain many nodes. These nodes can point to some other nodes. 
+// Trees contain many nodes. These nodes can point to some other nodes. 
 // Nodes have edges. Edges connect the nodes. 
 // Use these terms: 
 // 		parent
@@ -118,7 +118,7 @@ const breadthFirstValues = (root) => {
 
 const treeSum = (root) => {
   if (root === null) return 0; 
-  // Breadth First
+  // Depth First
   let current = null;
   const stack = [root];
   let count = 0; 
@@ -256,7 +256,6 @@ const pathFinder = (root, target) => {
   if (rightSearch != null) {
     return [ root.val, ...rightSearch ]
   }
-  
   return null; 
 };
 
