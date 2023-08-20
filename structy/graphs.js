@@ -24,7 +24,7 @@ const breadthFirstPrint = (graph, start) => {
         const current = queue.shift()
         console.log(current)
         for (let neighbor of graph[current]) {
-            queue.push(neighbor)
+          queue.push(neighbor)
         }
     }
 }
