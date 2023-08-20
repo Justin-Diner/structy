@@ -157,6 +157,34 @@ const connectedComponentsCount = (graph) => {
     return true
   }
 
+// Connected Components Count My Solution 
+const connectedComponentsCount2 = (graph) => {
+  let count = 0;
+  const visited = new Set();
+  
+  for (let node in graph) {
+    if (!visited.has(node)) {
+      explore(graph, node, visited)
+      count +=1;
+    }
+  }
+  return count; 
+};
+
+const explore2 = (graph, src, visited) => {
+  const stack = [ src ];
+  
+  while (stack.length > 0) {
+    const current = stack.pop(); 
+    if (!visited.has(String(current))) {
+      visited.add(String(current))
+      for (let neighbor of graph[current]) {
+        stack.push(neighbor);
+      }
+    }
+  }
+}
+
 // Shortest Path 
 const shortestPath = (edges, nodeA, nodeB) => {
     const graph = adjList(edges);
