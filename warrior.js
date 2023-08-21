@@ -21,7 +21,12 @@ class Human {
   deathCheck = () => {
     if (this._health <= 0) {
       console.log(`${this.name} has Died!!!`)
+      this.#allegiance();
     } 
+  }
+
+  #allegiance() {
+    console.log("My allegiance is mine!")
   }
 }
 
@@ -56,5 +61,6 @@ const sara = new Mage("Sara")
 john.attack(sara);
 sara.heal()
 
-
+sara.health = 10;
+john.attack(sara);
 

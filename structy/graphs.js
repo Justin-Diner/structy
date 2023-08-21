@@ -79,7 +79,6 @@ const hasPathBFS = (graph, src, dst) => {
 // Undirected Path
 const undirectedPath = (edges, nodeA, nodeB) => {
     const graph = buildGraph(edges)
-    const visited = {}
     return hasPath(graph, nodeA, nodeB, new Set())
   };
   

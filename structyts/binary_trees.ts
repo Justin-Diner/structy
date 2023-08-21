@@ -80,3 +80,10 @@ const treeSum = (root: Node): number => {
   }
   return count;
 }
+
+// TreeIncludes 
+const treeInlcudes = (root: Node | null, target: any) => {
+  if (root === null) return false; 
+  if (root.val === target) return true; 
+  return treeIncludes(root.left, target) || treeInlcudes(root.right, target)
+}
