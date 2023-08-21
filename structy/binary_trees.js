@@ -1,5 +1,4 @@
 // Depth First Traversal (Stack) 
-
 // Breadth First Traversal (Queue) 
 
 // Trees contain many nodes. These nodes can point to some other nodes. 
